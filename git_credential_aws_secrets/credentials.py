@@ -18,8 +18,11 @@ def parse_config():
 
 
 def lookup(args, pfile):
-    if len(args) < 2 or args[1] != "get":
+    if len(args) < 2:
         print("Usage: %s get" % os.path.basename(sys.argv[0]), file=sys.stderr)
+        return 1
+    # only support retrieval, not storage or deletion
+    if args[1] != "get":
         return 1
     params = {}
     for line in pfile:
